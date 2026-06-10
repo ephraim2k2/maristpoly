@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marist Polytechnic Enugu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --crimson:#8B0000;--crimson-dark:#5a0000;
+      --white:#fff;--off:#f7f4f0;--off2:#f0ebe4;
+      --dark:#111;--dark2:#1e1e1e;
+      --gold:#c9a84c;--gold-light:#e8c96a;
+      --text:#1a1a1a;--text2:#555;--text3:#888;
+      --border:#e4ddd5;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+    h1,h2,h3,h4,h5,h6{font-family:'Inter',sans-serif;font-style:normal}
+    em{font-style:normal}
+
+    .ic{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+    .ic svg{display:block}
+
+    .reveal{opacity:0;transform:translateY(48px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+    .reveal.visible{opacity:1;transform:none}
+    .reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+    .reveal-left.visible{opacity:1;transform:none}
+    .reveal-right{opacity:0;transform:translateX(60px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+    .reveal-right.visible{opacity:1;transform:none}
+    .delay-1{transition-delay:.1s}.delay-2{transition-delay:.22s}.delay-3{transition-delay:.36s}.delay-4{transition-delay:.5s}.delay-5{transition-delay:.65s}
+
+    .news-ticker{background:var(--crimson);color:#fff;font-size:12.5px;display:flex;align-items:center;overflow:hidden;height:36px}
+    .ticker-label{background:var(--gold);color:#3a1a00;font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:0 18px;height:100%;display:flex;align-items:center;white-space:nowrap;flex-shrink:0;gap:7px}
+    .ticker-track-wrap{flex:1;overflow:hidden}
+    .ticker-track{display:flex;animation:tickerScroll 36s linear infinite;white-space:nowrap;width:max-content}
+    .ticker-track:hover{animation-play-state:paused}
+    .ticker-item{padding:0 36px;opacity:.9;font-size:12.5px;display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif}
+    .ticker-item::before{content:'●';font-size:6px;color:var(--gold);opacity:.8}
+    @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    .site-nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:70px;background:rgba(255,255,255,0.75);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(0,0,0,0.07);position:sticky;top:0;z-index:200;transition:background .4s,box-shadow .4s}
+    .site-nav.scrolled{background:rgba(255,255,255,0.97);}
+    .nav-logo{display:flex;align-items:center;gap:10px}
+    .nav-logo img{width:42px;height:auto}
+    .nav-logo-text .brand{font-family:'Inter',sans-serif;font-size:15px;font-weight:800;letter-spacing:-0.02em;color:var(--crimson)}
+    .nav-logo-text .sub{font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;font-weight:400}
+    .nav-links{display:flex;gap:2px;list-style:none}
+    .nav-links a{color:var(--text2);text-decoration:none;font-size:13.5px;padding:7px 15px;border-radius:24px;display:flex;align-items:center;gap:5px;transition:background .2s,color .2s;font-weight:500}
+    .nav-links a:hover,.nav-links a.active{background:rgba(139,0,0,0.07);color:var(--crimson)}
+    .nav-links a.active{font-weight:600}
+    .nav-right{display:flex;align-items:center;gap:8px}
+    .nav-icon-btn{background:transparent;border:1px solid var(--border);color:var(--text2);cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,border .2s}
+    .nav-icon-btn:hover{background:var(--off);border-color:#ccc}
+    .nav-cta{background:var(--crimson);color:#fff;border:none;font-size:13px;font-weight:600;font-family:'Inter',sans-serif;padding:9px 22px;border-radius:24px;cursor:pointer;letter-spacing:-0.01em;transition:background .2s,transform .2s}
+    .nav-cta:hover{background:var(--crimson-dark);transform:translateY(-1px)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:var(--off);border:1px solid var(--border);padding:9px;border-radius:9px}
+    .hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px}
+    .mobile-menu{display:none;flex-direction:column;background:#fff;padding:8px 24px 24px;position:absolute;top:100%;left:0;right:0;z-index:199;border-bottom:1px solid var(--border);}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{color:var(--text);text-decoration:none;font-size:15px;padding:14px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;font-weight:500}
+    .mobile-menu a:last-child{border-bottom:none}
+
+    #hero{position:relative;height:100vh;min-height:600px;display:grid;grid-template-columns:230px 1fr 210px;align-items:center;padding:0 52px;gap:28px;background:var(--crimson);overflow:hidden;color:#fff}
+    #hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+    #hero::after{content:'';position:absolute;bottom:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.28) 0%,transparent 70%);pointer-events:none}
+    .hero-left{animation:fadeUp .9s ease both}
+    .photo-card{width:200px;height:260px;overflow:hidden;border-radius:8px;}
+    .photo-card img{width:100%;height:100%;object-fit:cover}
+    .hero-center{position:relative;z-index:2;animation:fadeUp .9s .15s ease both}
+    .tagline{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;opacity:.7;color:#fff;font-weight:500}
+    .hero-title{font-family:'Inter',sans-serif;font-size:clamp(52px,6.8vw,92px);font-weight:900;line-height:.96;letter-spacing:-0.04em;margin-bottom:30px;color:#fff}
+    .title-line1{display:block;margin-bottom:4px}
+    .title-line2{display:flex;align-items:center;gap:18px}
+    .spin-badge-wrap{flex-shrink:0;width:88px;height:88px;position:relative}
+    .spin-ring{width:88px;height:88px;animation:spinBadge 14s linear infinite}
+    .spin-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border:1.5px solid rgba(255,255,255,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+    .spin-play:hover{background:rgba(255,255,255,0.15)}
+    .hero-desc{font-size:15px;line-height:1.72;opacity:.78;max-width:420px;margin-bottom:38px;color:#fff;font-weight:400}
+    .btn-hero{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,0.6);color:#fff;background:transparent;padding:14px 30px;font-size:13px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:0.02em;text-transform:uppercase;transition:background .25s,color .25s,transform .2s;border-radius:3px}
+    .btn-hero:hover{background:#fff;color:var(--crimson);transform:translateY(-2px)}
+    .btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#2a0a00;border:none;padding:14px 30px;font-size:13px;font-family:'Inter',sans-serif;font-weight:700;cursor:pointer;text-decoration:none;letter-spacing:0.02em;text-transform:uppercase;transition:opacity .25s,transform .2s;border-radius:3px}
+    .btn-gold:hover{opacity:.88;transform:translateY(-2px)}
+    .hero-right{display:flex;justify-content:flex-end;animation:fadeUp .9s .3s ease both}
+    .building-card{width:180px;height:230px;overflow:hidden;border-radius:8px;}
+    .building-card img{width:100%;height:100%;object-fit:cover}
+    .hero-scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:3px;text-transform:uppercase;opacity:.5;color:#fff;animation:bounce 2s ease infinite;font-weight:500}
+    .hero-scroll-hint span{width:1px;height:48px;background:rgba(255,255,255,0.4)}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes spinBadge{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+    #stats{background:var(--off);height:100px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+    .stat-item{flex:1;text-align:center;border-right:1px solid var(--border);padding:0 24px}
+    .stat-item:last-child{border-right:none}
+    .stat-num{font-family:'Inter',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:800;color:var(--crimson);line-height:1;letter-spacing:-0.03em}
+    .stat-label{font-size:11px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;font-weight:500}
+
+    #about{min-height:640px;display:grid;grid-template-columns:1fr 1fr;background:var(--white);overflow:hidden}
+    .about-img-side{position:relative;overflow:hidden}
+    .about-img-side img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease}
+    .about-img-side:hover img{transform:scale(1.04)}
+    .about-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,0,0,0.45) 0%,transparent 55%)}
+    .about-img-badge{position:absolute;bottom:40px;left:40px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border:1px solid var(--border);padding:18px 24px;border-radius:8px}
+    .about-img-badge .num{font-family:'Inter',sans-serif;font-size:40px;font-weight:800;color:var(--crimson);line-height:1;letter-spacing:-0.03em}
+    .about-img-badge .lbl{font-size:11px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-top:4px}
+    .about-content{display:flex;flex-direction:column;justify-content:center;padding:80px 72px;background:var(--white)}
+    .section-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--crimson);margin-bottom:14px;display:flex;align-items:center;gap:8px;font-weight:600}
+    .section-title{font-family:'Inter',sans-serif;font-size:clamp(32px,3.5vw,50px);font-weight:800;line-height:1.05;margin-bottom:22px;color:var(--text);letter-spacing:-0.03em}
+    .section-title em{font-style:normal;color:var(--crimson);font-weight:800}
+    .section-body{font-size:15px;line-height:1.78;color:var(--text2);margin-bottom:28px;font-weight:400}
+    .about-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px}
+    .about-stats-row{display:flex;gap:0;margin-top:40px;border-top:1px solid var(--border);padding-top:28px}
+    .about-stat{flex:1;text-align:center;border-right:1px solid var(--border);padding:0 16px}
+    .about-stat:last-child{border-right:none}
+    .about-stat-num{font-family:'Inter',sans-serif;font-size:clamp(22px,2.5vw,32px);font-weight:800;color:var(--crimson);line-height:1;letter-spacing:-0.03em}
+    .about-stat-label{font-size:10px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;font-weight:600}
+    @media(max-width:768px){
+      .about-stats-row{flex-wrap:wrap;gap:16px 0}
+      .about-stat{min-width:33%;border-right:none;border-bottom:1px solid var(--border);padding-bottom:16px}
+      .about-stat:nth-child(4),.about-stat:nth-child(5){border-bottom:none}
+    }
+    .feat-card{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:18px;transition:background .3s,border .3s,transform .3s;display:flex;flex-direction:column;gap:8px}
+    .feat-card:hover{background:#fff;border-color:rgba(139,0,0,0.2);transform:translateY(-3px);}
+    .feat-title{font-size:13px;font-weight:700;color:var(--text);letter-spacing:-0.01em}
+    .feat-desc{font-size:12px;color:var(--text3);line-height:1.5;font-weight:400}
+    .btn-crimson{display:inline-flex;align-items:center;gap:10px;background:var(--crimson);color:#fff;border:none;padding:14px 30px;font-size:13px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:0.02em;text-transform:uppercase;transition:background .2s,transform .2s;border-radius:3px}
+    .btn-crimson:hover{background:var(--crimson-dark);transform:translateY(-2px)}
+    .btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);padding:14px 30px;font-size:13px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:0.02em;text-transform:uppercase;transition:background .2s,color .2s;border-radius:3px}
+    .btn-outline:hover{background:var(--crimson);color:#fff}
+
+    #programs{min-height:700px;background:var(--crimson);display:flex;flex-direction:column;justify-content:center;padding:100px 52px;position:relative;overflow:hidden;color:#fff}
+    #programs::before{content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);pointer-events:none}
+    .programs-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px}
+    .programs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .prog-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:26px 22px;display:flex;flex-direction:column;cursor:pointer;transition:background .3s,border .3s,transform .3s;position:relative;overflow:hidden}
+    .prog-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+    .prog-card:hover{background:rgba(255,255,255,0.13);border-color:rgba(201,168,76,0.4);transform:translateY(-5px)}
+    .prog-card:hover::after{transform:scaleX(1)}
+    .prog-icon{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .prog-name{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;margin-bottom:9px;line-height:1.25;color:#fff;letter-spacing:-0.02em}
+    .prog-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;flex:1;font-weight:400}
+    .prog-link{margin-top:16px;font-size:11px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:6px;transition:opacity .2s;font-weight:600}
+    .prog-link:hover{opacity:.75}
+
+    #campus{min-height:640px;background:var(--off);display:grid;grid-template-columns:1fr 1.1fr;overflow:hidden}
+    .campus-content{display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
+    .campus-items{display:flex;flex-direction:column;gap:18px;margin-top:32px}
+    .campus-item{display:flex;align-items:flex-start;gap:18px;padding:18px 20px;border-radius:12px;border:1px solid var(--border);background:#fff;transition:background .3s,border .3s,transform .3s}
+    .campus-item:hover{border-color:rgba(139,0,0,0.25);transform:translateX(5px);}
+    .campus-item-icon{width:44px;height:44px;border-radius:10px;background:rgba(139,0,0,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .campus-item-title{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text);letter-spacing:-0.01em}
+    .campus-item-desc{font-size:13px;color:var(--text3);line-height:1.55;font-weight:400}
+    .campus-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px}
+    .mosaic-cell{overflow:hidden;position:relative}
+    .mosaic-cell img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .mosaic-cell:hover img{transform:scale(1.07)}
+    .mosaic-cell .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.15);transition:background .3s}
+    .mosaic-cell:hover .overlay{background:rgba(139,0,0,0.25)}
+
+    #admissions{min-height:640px;background:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 52px;position:relative;overflow:hidden}
+    #admissions::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 15% 50%,rgba(139,0,0,0.04) 0%,transparent 50%),radial-gradient(circle at 85% 50%,rgba(201,168,76,0.05) 0%,transparent 50%);pointer-events:none}
+    .admissions-steps{display:flex;align-items:flex-start;gap:0;margin:50px 0;width:100%;max-width:960px}
+    .step{flex:1;text-align:center;position:relative;padding:0 16px}
+    .step:not(:last-child)::after{content:'';position:absolute;top:27px;left:calc(50% + 28px);width:calc(100% - 56px);height:1px;background:linear-gradient(90deg,rgba(139,0,0,0.3),rgba(139,0,0,0.05))}
+    .step-circle{width:54px;height:54px;border-radius:50%;background:rgba(139,0,0,0.06);border:1.5px solid rgba(139,0,0,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;transition:background .3s,transform .3s}
+    .step:hover .step-circle{background:rgba(139,0,0,0.12);transform:scale(1.1)}
+    .step-num{font-size:10px;color:var(--crimson);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:700}
+    .step-title{font-size:13px;font-weight:700;margin-bottom:5px;color:var(--text);letter-spacing:-0.01em}
+    .step-desc{font-size:12px;color:var(--text3);line-height:1.55;font-weight:400}
+    .admissions-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+    #testimonials{height:100vh;min-height:640px;background:var(--off);display:flex;flex-direction:column;justify-content:center;padding:60px 52px;overflow:hidden}
+    .testi-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px}
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .testi-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:30px 26px;display:flex;flex-direction:column;gap:16px;transition:border .3s,transform .3s,box-shadow .3s}
+    .testi-card:hover{border-color:rgba(139,0,0,0.2);transform:translateY(-5px);}
+    .testi-stars{color:var(--gold);font-size:14px;letter-spacing:2px}
+    .testi-quote{font-family:'Inter',sans-serif;font-size:15px;font-style:normal;font-weight:400;line-height:1.72;color:var(--text2);flex:1}
+    .testi-author{display:flex;align-items:center;gap:12px}
+    .testi-avatar{width:44px;height:44px;border-radius:50%;background:rgba(139,0,0,0.08);border:1px solid rgba(139,0,0,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .testi-name{font-size:13px;font-weight:700;color:var(--text);letter-spacing:-0.01em}
+    .testi-role{font-size:12px;color:var(--text3);font-weight:400}
+
+    #news{min-height:640px;background:#fff;display:flex;flex-direction:column;justify-content:center;padding:100px 52px;overflow:hidden}
+    .news-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:22px;margin-top:44px}
+    .news-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .3s,border .3s,box-shadow .3s}
+    .news-card:hover{transform:translateY(-5px);border-color:rgba(139,0,0,0.2);}
+    .news-card-img{height:170px;background:var(--off);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .news-card-img img{width:100%;height:100%;object-fit:cover}
+    .news-card-img-placeholder{width:56px;height:56px;border-radius:50%;background:rgba(139,0,0,0.08);display:flex;align-items:center;justify-content:center}
+    .news-card-body{padding:20px}
+    .news-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--crimson);margin-bottom:8px;display:flex;align-items:center;gap:6px;font-weight:700}
+    .news-card-title{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;line-height:1.35;margin-bottom:10px;color:var(--text);letter-spacing:-0.02em}
+    .news-card-meta{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:6px;font-weight:400}
+    .news-card.featured .news-card-img{height:210px}
+    .news-card.featured .news-card-title{font-size:18px}
+
+    #contact{min-height:640px;background:var(--off);display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+    .contact-content{display:flex;flex-direction:column;justify-content:center;padding:80px 64px;border-right:1px solid var(--border)}
+    .contact-info-list{display:flex;flex-direction:column;gap:22px;margin-top:32px}
+    .contact-info-item{display:flex;align-items:flex-start;gap:16px}
+    .contact-info-icon{width:42px;height:42px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .contact-info-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:3px;font-weight:600}
+    .contact-info-val{font-size:14px;color:var(--text);font-weight:400}
+    .contact-form-side{display:flex;flex-direction:column;justify-content:center;padding:80px 64px;background:#fff}
+    .form-group{margin-bottom:18px}
+    .form-group label{display:block;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:7px;font-weight:600}
+    .form-group input,.form-group textarea,.form-group select{width:100%;background:var(--off);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:14px;padding:11px 14px;outline:none;transition:border .2s,background .2s;font-weight:400}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(139,0,0,0.4);background:#fff}
+    .form-group textarea{resize:vertical;min-height:96px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-submit{width:100%;background:var(--crimson);color:#fff;border:none;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;padding:14px;border-radius:8px;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:background .2s,transform .2s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:10px}
+    .form-submit:hover{background:var(--crimson-dark);transform:translateY(-1px)}
+
+    /* FOOTER */
+    .site-footer{background:#111;color:rgba(255,255,255,0.75);font-family:'Inter',sans-serif;position:relative;overflow:hidden}
+    .footer-cta{text-align:center;padding:72px 52px 0;position:relative;z-index:2}
+    .footer-cta h2{font-family:'Inter',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:800;color:#fff;margin:0 0 14px;line-height:1.1;letter-spacing:-0.04em}
+    .footer-cta h2 em{font-style:normal;color:rgba(255,255,255,0.45);font-weight:300}
+    .footer-cta p{font-size:14px;color:rgba(255,255,255,0.4);max-width:460px;margin:0 auto 32px;line-height:1.65;font-weight:400}
+    .footer-trust-row{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;padding-bottom:0}
+    .footer-trust-item{display:flex;align-items:center;gap:8px;opacity:.4;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;font-weight:600}
+    .footer-trust-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.5);flex-shrink:0}
+    .footer-big-text{text-align:center;overflow:hidden;line-height:.9;padding:24px 0 0}
+    .footer-big-text span{font-family:'Inter',sans-serif;font-size:clamp(80px,16vw,200px);font-weight:900;letter-spacing:-0.06em;color:rgba(255,255,255,0.18);user-select:none;pointer-events:none;display:block;white-space:nowrap}
+    .footer-sep{height:1px;background:rgba(255,255,255,0.07);margin:0 52px;position:relative;z-index:2}
+    .footer-body{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:0;position:relative;z-index:2;border-bottom:1px solid rgba(255,255,255,0.07)}
+    .footer-col{padding:44px 36px}
+    .footer-col:not(:last-child){border-right:1px solid rgba(255,255,255,0.06)}
+    .footer-brand-name{display:flex;align-items:baseline;gap:5px;margin-bottom:16px}
+    .footer-brand-name .fn-light{font-size:18px;font-weight:300;color:rgba(255,255,255,0.45);letter-spacing:-0.01em}
+    .footer-brand-name .fn-bold{font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em}
+    .footer-brand-desc{font-size:13px;color:rgba(255,255,255,0.38);line-height:1.75;margin-bottom:22px;max-width:260px;font-weight:400}
+    .footer-accr{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:11px 15px}
+    .footer-accr-dot{width:7px;height:7px;border-radius:50%;background:#c9a84c;flex-shrink:0}
+    .footer-accr span{font-size:11.5px;color:rgba(255,255,255,0.38);line-height:1.4}
+    .footer-accr strong{display:block;color:rgba(255,255,255,0.78);font-size:12px;font-weight:700;letter-spacing:-0.01em}
+    .footer-social-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:24px 0 10px;font-weight:600}
+    .footer-socials-row{display:flex;gap:8px}
+    .fsoc-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+    .fsoc-btn:hover{background:#8B0000;border-color:#8B0000;transform:translateY(-2px)}
+    .footer-col-heading{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:20px;font-weight:700}
+    .footer-link-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1px}
+    .footer-link-list a{color:rgba(255,255,255,0.42);text-decoration:none;font-size:13px;padding:7px 0;display:flex;align-items:center;justify-content:space-between;transition:color .2s;border-bottom:1px solid rgba(255,255,255,0.04);font-weight:400}
+    .footer-link-list a:hover{color:#fff}
+    .footer-link-list a .arr{opacity:0;font-size:11px;transition:opacity .2s;color:#c9a84c}
+    .footer-link-list a:hover .arr{opacity:1}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding:18px 36px;flex-wrap:wrap;gap:12px;position:relative;z-index:2}
+    .footer-bottom-left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-bottom-left p{font-size:11px;color:rgba(255,255,255,0.22);margin:0;font-weight:400}
+    .footer-bottom-links{list-style:none;padding:0;margin:0;display:flex;gap:16px;flex-wrap:wrap}
+    .footer-bottom-links a{font-size:11px;color:rgba(255,255,255,0.22);text-decoration:none;transition:color .2s;font-weight:400}
+    .footer-bottom-links a:hover{color:rgba(255,255,255,0.6)}
+    .footer-nbte-badge{display:flex;align-items:center;gap:7px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);padding:5px 14px;border-radius:20px}
+    .footer-nbte-badge span{font-size:11px;color:#c9a84c;letter-spacing:.3px;font-weight:600}
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){
+      .programs-grid{grid-template-columns:repeat(2,1fr)}
+      .testi-grid{grid-template-columns:1fr 1fr}
+      .testi-card:last-child{display:none}
+      .footer-body{grid-template-columns:1fr 1fr}
+      .footer-col{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
+      .footer-col:last-child{border-bottom:none}
+    }
+    @media(max-width:900px){
+      #hero{grid-template-columns:1fr;text-align:center;justify-items:center;padding:0 28px}
+      .hero-left,.hero-right{display:none}
+      .title-line2{justify-content:center}
+      .hero-desc{text-align:center;margin:0 auto 32px}
+      #about{grid-template-columns:1fr;height:auto;min-height:100vh}
+      .about-img-side{height:40vh}
+      .about-content{padding:52px 36px}
+      #campus{grid-template-columns:1fr;height:auto;min-height:100vh}
+      .campus-mosaic{height:40vh}
+      #contact{grid-template-columns:1fr;height:auto;min-height:100vh}
+      .contact-content{border-right:none;border-bottom:1px solid var(--border);padding:52px 36px}
+      .contact-form-side{padding:52px 36px}
+      .news-grid{grid-template-columns:1fr;overflow-y:auto}
+      #news{height:auto;min-height:100vh}
+      .footer-sep{margin:0 24px}
+      .footer-cta{padding:52px 24px 0}
+      .footer-trust-row{gap:16px}
+    }
+    @media(max-width:768px){
+      .site-nav{padding:0 20px}
+      .nav-links,.nav-cta,.nav-icon-btn{display:none}
+      .hamburger{display:flex}
+      #stats{height:auto;flex-wrap:wrap;padding:20px}
+      .stat-item{border-right:none;border-bottom:1px solid var(--border);padding:12px;min-width:50%}
+      .stat-item:last-child{border-bottom:none}
+      #programs{height:auto;min-height:100vh;padding:52px 24px}
+      .programs-header{flex-direction:column;align-items:flex-start;gap:16px}
+      .programs-grid{grid-template-columns:1fr 1fr}
+      #admissions{height:auto;min-height:100vh;padding:52px 24px}
+      .admissions-steps{flex-direction:column;align-items:center}
+      .step:not(:last-child)::after{display:none}
+      #testimonials{padding:52px 24px}
+      .testi-grid{grid-template-columns:1fr}
+      .testi-header{flex-direction:column;align-items:flex-start;gap:12px}
+      .campus-content{padding:48px 24px}
+      .footer-body{grid-template-columns:1fr}
+      .footer-col{padding:28px 24px;border-right:none!important;border-top:1px solid rgba(255,255,255,0.06)}
+      .footer-col:first-child{border-top:none}
+      .footer-bottom{padding:16px 24px;flex-direction:column;align-items:flex-start}
+      .footer-bottom-links{gap:12px;flex-wrap:wrap}
+      /* TESTIMONIALS SECTION */
+    #testimonials{background:var(--off);display:flex;flex-direction:column;justify-content:center;padding:100px 52px;overflow:hidden}
+    .testi-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px}
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .testi-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:30px 26px;display:flex;flex-direction:column;gap:16px;transition:border .3s,transform .3s,box-shadow .3s}
+    .testi-card:hover{border-color:rgba(139,0,0,0.2);transform:translateY(-5px);}
+    .testi-stars{color:var(--gold);font-size:14px;letter-spacing:2px}
+    .testi-quote{font-family:'Inter',sans-serif;font-size:15px;font-style:normal;font-weight:400;line-height:1.72;color:var(--text2);flex:1}
+    .testi-author{display:flex;align-items:center;gap:12px}
+    .testi-avatar{width:44px;height:44px;border-radius:50%;background:rgba(139,0,0,0.08);border:1px solid rgba(139,0,0,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .testi-name{font-size:13px;font-weight:700;color:var(--text);letter-spacing:-0.01em}
+    .testi-role{font-size:12px;color:var(--text3);font-weight:400}
+
+    /* FOOTER BACKGROUND - MORE VISIBLE */
+    .footer-big-text span{font-family:'Inter',sans-serif;font-size:clamp(80px,16vw,200px);font-weight:900;letter-spacing:-0.06em;color:rgba(255,255,255,0.18);user-select:none;pointer-events:none;display:block;white-space:nowrap}
+
+    /* SECTION SPACING - MORE BREATHING ROOM */
+    #hero{height:100vh;min-height:600px}
+    #stats{padding:40px 0}
+    #about{height:auto;min-height:0;padding:80px 0}
+    #programs{height:auto;min-height:0;padding:100px 52px}
+    #campus{height:auto;min-height:0;padding:80px 0}
+    #admissions{height:auto;min-height:0;padding:100px 52px}
+    #testimonials{height:auto;min-height:0;padding:100px 52px}
+    #news{height:auto;min-height:0;padding:100px 52px}
+    #contact{height:auto;min-height:0;padding:80px 0}
+    }
+    @media(max-width:1100px){
+      .why-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:768px){
+      .testi-grid{grid-template-columns:1fr}
+      #testimonials{padding:52px 24px}
+    }
+
+    /* === MODERN ENHANCEMENTS === */
+
+    /* 1. SCROLL PROGRESS BAR */
+    #scrollProgress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--crimson));width:0%;z-index:999;transition:width .1s linear}
+
+    /* 2. CUSTOM CURSOR */
+    body{cursor:none}
+    .cursor-dot{width:8px;height:8px;background:var(--crimson);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s;mix-blend-mode:difference}
+    .cursor-dot.hover{width:40px;height:40px;background:rgba(139,0,0,0.15);border:1.5px solid var(--crimson);mix-blend-mode:normal}
+    .cursor-trail{width:32px;height:32px;border:1px solid rgba(139,0,0,0.2);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s ease-out,opacity .3s}
+    @media(pointer:coarse){body{cursor:auto}.cursor-dot,.cursor-trail{display:none}}
+
+    /* 3. NUMBER COUNTERS */
+    .about-stat-num{opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
+    .about-stat-num.counted{opacity:1;transform:none}
+
+    /* 4. PARALLAX IMAGES */
+    .about-img-side img,.mosaic-cell img{will-change:transform}
+    .parallax-img{transition:transform .1s linear}
+
+    /* 5. GLASSMORPHISM NAV */
+    .site-nav{background:rgba(255,255,255,0.65);backdrop-filter:blur(30px) saturate(1.2);-webkit-backdrop-filter:blur(30px) saturate(1.2);border-bottom:1px solid rgba(255,255,255,0.15)}
+    .site-nav.scrolled{background:rgba(255,255,255,0.92);}
+
+    /* 6. TEXT REVEAL ANIMATION */
+    .text-reveal{overflow:hidden}
+    .text-reveal span{display:inline-block;transform:translateY(110%);transition:transform .8s cubic-bezier(.22,1,.36,1)}
+    .text-reveal.visible span{transform:translateY(0)}
+
+    /* 7. MAGNETIC BUTTONS */
+    .btn-magnetic{position:relative;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+
+    /* 8. NOISE TEXTURE OVERLAY */
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:0.4}
+
+    /* 9. SMOOTH SECTION TRANSITIONS */
+    section{position:relative}
+    section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);opacity:0}
+
+    /* 10. IMAGE HOVER OVERLAY */
+    .mosaic-cell{position:relative;overflow:hidden}
+    .mosaic-cell::after{content:attr(data-label);position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(139,0,0,0.85));color:#fff;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+    .mosaic-cell:hover::after{transform:translateY(0)}
+
+    /* 11. CARD 3D TILT */
+    .prog-card,.testi-card,.news-card,.feat-card{transform-style:preserve-3d;transition:transform .3s,box-shadow .3s}
+    .prog-card:hover,.testi-card:hover,.news-card:hover,.feat-card:hover{}
+
+    /* 12. STAGGERED LIST ITEMS */
+    .campus-item,.contact-info-item{opacity:0;transform:translateX(-20px);transition:opacity .5s,transform .5s}
+    .campus-item.visible,.contact-info-item.visible{opacity:1;transform:none}
+
+    /* 13. SMOOTH SCROLL SNAP for sections */
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+
+    /* 14. LOADING STATE for images */
+    .photo-card img,.building-card img,.about-img-side img{opacity:0;transition:opacity .6s}
+    .photo-card img.loaded,.building-card img.loaded,.about-img-side img.loaded{opacity:1}
+
+    /* 15. ACTIVE NAV LINK UNDERLINE */
+    .nav-links a{position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:2px;left:15px;right:15px;height:2px;background:var(--crimson);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+    .nav-links a.active::after,.nav-links a:hover::after{transform:scaleX(1)}
+
+    /* 16. HERO TEXT SHIMMER */
+    .hero-title{background:linear-gradient(90deg,#fff 0%,#fff 40%,var(--gold-light) 50%,#fff 60%,#fff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;animation:shimmer 4s ease-in-out infinite}
+    @keyframes shimmer{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
+
+    /* 17. FLOATING ELEMENTS */
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .photo-card{animation:float 6s ease-in-out infinite}
+    .building-card{animation:float 6s ease-in-out infinite 1s}
+
+    /* 18. SECTION LABELS (sticky side labels) */
+    .section-label{position:fixed;left:20px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:left center;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text3);font-weight:600;opacity:0;transition:opacity .4s;pointer-events:none;z-index:100;white-space:nowrap}
+    .section-label.visible{opacity:1}
+
+    /* RESPONSIVE for new features */
+    @media(max-width:768px){
+      .about-stats-row{flex-wrap:wrap;gap:16px 0}
+      .about-stat{min-width:33%;border-right:none;border-bottom:1px solid var(--border);padding-bottom:16px}
+      .about-stat:nth-child(4),.about-stat:nth-child(5){border-bottom:none}
+      .cursor-dot,.cursor-trail{display:none}
+      body{cursor:auto}
+    }
+  
+    /* === TVET SKILLS SECTION === */
+    #tvet{background:var(--crimson);display:flex;flex-direction:column;justify-content:center;padding:100px 52px;position:relative;overflow:hidden;color:#fff}
+    #tvet::before{content:'';position:absolute;top:-150px;right:-150px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.1) 0%,transparent 70%);pointer-events:none}
+    .tvet-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px}
+    .tvet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .tvet-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px 22px;display:flex;flex-direction:column;gap:12px;transition:background .3s,border .3s,transform .3s}
+    .tvet-card:hover{background:rgba(255,255,255,0.1);border-color:rgba(201,168,76,0.35);transform:translateY(-4px)}
+    .tvet-card-num{font-family:'Inter',sans-serif;font-size:32px;font-weight:800;color:var(--gold);line-height:1;opacity:.6}
+    .tvet-card-title{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em}
+    .tvet-card-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;font-weight:400}
+    .tvet-note{margin-top:36px;padding:20px 24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;gap:14px}
+    .tvet-note-icon{width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .tvet-note-text{font-size:13.5px;color:rgba(255,255,255,0.75);line-height:1.6;font-weight:400}
+    .tvet-note-text strong{color:var(--gold-light);font-weight:600}
+
+    /* === RECTOR'S MESSAGE SECTION === */
+    #rector{background:var(--off);display:grid;grid-template-columns:1fr 1.3fr;overflow:hidden}
+    .rector-img-side{position:relative;overflow:hidden;background:var(--crimson);display:flex;align-items:center;justify-content:center}
+    .rector-img-side::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+    .rector-img-placeholder{width:200px;height:260px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center}
+    .rector-img-placeholder svg{color:rgba(255,255,255,0.3)}
+    .rector-content{display:flex;flex-direction:column;justify-content:center;padding:80px 72px;background:var(--off)}
+    .rector-quote{font-family:'Inter',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:500;line-height:1.65;color:var(--text);margin-bottom:28px;position:relative;padding-left:28px;border-left:3px solid var(--crimson)}
+    .rector-quote em{font-style:italic;color:var(--crimson);font-weight:600}
+    .rector-body{font-size:15px;line-height:1.78;color:var(--text2);margin-bottom:24px;font-weight:400}
+    .rector-signature{margin-top:8px}
+    .rector-name{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;color:var(--text);letter-spacing:-0.01em}
+    .rector-title{font-size:13px;color:var(--text3);margin-top:2px;font-weight:500}
+    .rector-affil{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:12px 18px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:12.5px;color:var(--text2);font-weight:500}
+    .rector-affil svg{flex-shrink:0}
+
+    @media(max-width:900px){
+      #tvet{padding:52px 24px}
+      .tvet-grid{grid-template-columns:1fr 1fr}
+      #rector{grid-template-columns:1fr;height:auto;min-height:0}
+      .rector-img-side{padding:60px 0}
+      .rector-content{padding:52px 36px}
+    }
+    @media(max-width:768px){
+      .tvet-grid{grid-template-columns:1fr}
+    }
+    </style>
+<base target="_blank">
+</head>
+<body>
+<div id="scrollProgress"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-trail"></div>
+
+<!-- NEWS TICKER -->
+<div class="news-ticker">
+  <div class="ticker-label">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3a1a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    NEWS
+  </div>
+  <div class="ticker-track-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item">2025/2026 Admission Forms Now Available — Apply Online</span>
+      <span class="ticker-item">Marist Polytechnic wins Best Tech College Award 2025</span>
+      <span class="ticker-item">New Engineering & ICT Department Opens This Semester</span>
+      <span class="ticker-item">Orientation for New Students: Monday 14th January, 9am</span>
+      <span class="ticker-item">Scholarship Applications Open — Deadline 31st January 2026</span>
+      <span class="ticker-item">Staff Development Workshop: Creative Arts & Design — Register Now</span>
+      <span class="ticker-item">2025/2026 Admission Forms Now Available — Apply Online</span>
+      <span class="ticker-item">Marist Polytechnic wins Best Tech College Award 2025</span>
+      <span class="ticker-item">New Engineering & ICT Department Opens This Semester</span>
+      <span class="ticker-item">Orientation for New Students: Monday 14th January, 9am</span>
+      <span class="ticker-item">Scholarship Applications Open — Deadline 31st January 2026</span>
+      <span class="ticker-item">Staff Development Workshop: Creative Arts & Design — Register Now</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <div class="nav-logo">
+    <img src="/img/maristlogo.png" alt="Marist Logo"/>
+    <div class="nav-logo-text">
+      <div class="brand">MARIST</div>
+      <div class="sub">Polytechnic Enugu</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Academics</a></li>
+   
+    <li><a href="#campus">Campus</a></li>
+    
+    <li><a href="#news">Events</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+  
+    <button class="nav-cta">Apply Now</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Home</a>
+    <a href="#about"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>About</a>
+    <a href="#programs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>Academics</a>
+    <a href="#tvet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>TVET</a>
+    <a href="#campus"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/></svg>Campus</a>
+    <a href="#rector"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Rector</a>
+    <a href="#news"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>Events</a>
+    <a href="#contact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="photo-card"><img src="/img/maristw.png" alt="Graduate"/></div>
+  </div>
+  <div class="hero-center">
+    <div class="tagline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      knowledge meets innovation
+    </div>
+    <h1 class="hero-title">
+      <span class="title-line1">MARIST</span>
+      <span class="title-line2">
+        <span class="spin-badge-wrap">
+          <svg class="spin-ring" viewBox="0 0 90 90">
+            <defs><path id="ct" d="M 45,45 m -34,0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0"/></defs>
+            <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+            <text font-size="8.5" fill="rgba(255,255,255,0.9)" font-family="Inter,sans-serif" letter-spacing="2.8">
+              <textPath href="#ct" startOffset="0%">MARIST · POLYTECHNIC · ENUGU ·</textPath>
+            </text>
+          </svg>
+          <div class="spin-play">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+        </span>
+        POLYTECHNIC
+      </span>
+    </h1>
+    <p class="hero-desc">A serene and conducive environment for effective teaching and learning. NBTE-accredited National and Higher National Diploma programs since 2016.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a href="#programs" class="btn-hero">Explore Programs <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#admissions" class="btn-gold">Apply Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a0a00" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="building-card"><img src="/img/image 22.png" alt="Campus"/></div>
+  </div>
+  <div class="hero-scroll-hint">SCROLL<span></span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-side reveal-left">
+    <img src="/img/maristw.png" alt="About Marist"/>
+    <div class="about-img-overlay"></div>
+    <div class="about-img-badge reveal delay-3">
+      <div class="num">2016</div>
+      <div class="lbl">Commissioned in Enugu</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>About Us</div>
+    <h2 class="section-title reveal delay-1">Shaping Minds,<br/><em>Building Futures</em></h2>
+    <p class="section-body reveal delay-2">Marist Polytechnic Enugu was commissioned on 22nd October 2016 and approved by the National Board for Technical Education (NBTE). Located in a serene and conducive environment in Emene, Enugu, we are a recognised National and Higher National Diploma awarding institution. On 27th August 2025, the Federal Ministry of Education approved us as a Skill Training Centre for TVET programs.</p>
+    <div class="about-features reveal delay-3">
+      <div class="feat-card"><div class="ic" style="color:var(--crimson)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><div class="feat-title">NBTE Accredited</div><div class="feat-desc">Fully accredited ND and HND programs since 2016</div></div>
+      <div class="feat-card"><div class="ic" style="color:var(--crimson)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div><div class="feat-title">Hands-On Training</div><div class="feat-desc">First-class workshops and laboratories for practical skills</div></div>
+      <div class="feat-card"><div class="ic" style="color:var(--crimson)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div><div class="feat-title">TVET Centre</div><div class="feat-desc">FME-approved Skill Training Centre for vocational education</div></div>
+      <div class="feat-card"><div class="ic" style="color:var(--crimson)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="feat-title">Affordable Hostels</div><div class="feat-desc">Well-furnished accommodation with 24/7 power and water supply</div></div>
+    </div>
+    <a href="#" class="btn-crimson reveal delay-4">Discover Our Story <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <div class="about-stats-row reveal delay-5">
+
+      <div class="about-stat"><div class="about-stat-num">2016</div><div class="about-stat-label">Year Established</div></div>
+      <div class="about-stat"><div class="about-stat-num">NBTE</div><div class="about-stat-label">Fully Accredited</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="programs-header">
+    <div>
+      <div class="section-eyebrow reveal" style="color:rgba(255,255,255,0.6)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Academics</div>
+      <h2 class="section-title reveal delay-1" style="color:#fff;margin-bottom:0">Our <em style="color:rgba(255,255,255,0.5);font-weight:300">Programs</em></h2>
+    </div>
+    <a href="#" class="btn-hero reveal delay-2" style="white-space:nowrap">View All <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card reveal delay-1"><div class="prog-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg></div><div class="prog-name">ND Biomedical Engineering</div><div class="prog-desc">Engineering/Tech/Env faculty — 2-year National Diploma in biomedical engineering technology.</div><a href="#" class="prog-link">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    <div class="prog-card reveal delay-2"><div class="prog-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="prog-name">ND Computer Engineering</div><div class="prog-desc">Engineering/Tech/Env faculty — practical training in computer hardware and systems engineering.</div><a href="#" class="prog-link">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    <div class="prog-card reveal delay-3"><div class="prog-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="prog-name">ND Electrical/Electronics</div><div class="prog-desc">Engineering/Tech/Env faculty — 2-year diploma in electrical and electronics engineering.</div><a href="#" class="prog-link">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    <div class="prog-card reveal delay-4"><div class="prog-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"><circle cx="13.5" cy="6.5" r="3.5"/><path d="M9.5 20.5a3.5 3.5 0 0 1 7 0H9.5z"/><path d="M9 12H4a2 2 0 0 0-2 2v6h7"/><path d="M15 12h5a2 2 0 0 1 2 2v6h-7"/></svg></div><div class="prog-name">ND Estate Management</div><div class="prog-desc">Engineering/Tech/Env faculty — National Diploma in Estate Management and Valuation.</div><a href="#" class="prog-link">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    <div class="prog-card reveal delay-1"><div class="prog-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="prog-name">ND Science Lab Technology</div><div class="prog-desc">Health Sciences faculty — 2-year ND in Science Laboratory Technology.</div><a href="#" class="prog-link">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    <div class="prog-card reveal delay-2"><div class="prog-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="prog-name">ND Computer Science</div><div class="prog-desc">Sciences faculty — software development, programming, and computing fundamentals.</div><a href="#" class="prog-link">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    <div class="prog-card reveal delay-3"><div class="prog-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 0 0 6.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 0 0 6.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg></div><div class="prog-name">ND Business Administration</div><div class="prog-desc">Social Sciences faculty — 2-year ND in Business Administration and Management.</div><a href="#" class="prog-link">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    <div class="prog-card reveal delay-4" style="background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.35)"><div class="prog-icon" style="background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.3)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="prog-name" style="color:#fff">HND Programs</div><div class="prog-desc" style="color:rgba(255,255,255,0.65)">HND in SLT (Microbiology), AI, Cyber Security, Business Admin, and Electrical Engineering (Power & Machines).</div><a href="#" class="prog-link" style="color:var(--gold-light)">View all HNDs <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+  </div>
+</section>
+
+<!-- TVET SKILLS -->
+<section id="tvet">
+  <div class="tvet-header">
+    <div>
+      <div class="section-eyebrow reveal" style="color:rgba(255,255,255,0.6)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>TVET Centre</div>
+      <h2 class="section-title reveal delay-1" style="color:#fff;margin-bottom:0">Skill Training <em style="color:rgba(255,255,255,0.5);font-weight:300">Programs</em></h2>
+    </div>
+    <a href="#" class="btn-hero reveal delay-2" style="white-space:nowrap">Apply for TVET <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+  <div class="tvet-grid">
+    <div class="tvet-card reveal delay-1"><div class="tvet-card-num">01</div><div class="tvet-card-title">Networking & Installation</div><div class="tvet-card-desc">Learn network setup, configuration, and system installation for enterprise environments.</div></div>
+    <div class="tvet-card reveal delay-2"><div class="tvet-card-num">02</div><div class="tvet-card-title">Computer Hardware & GSM Repairs</div><div class="tvet-card-desc">Hands-on training in computer hardware maintenance and mobile device repair.</div></div>
+    <div class="tvet-card reveal delay-3"><div class="tvet-card-num">03</div><div class="tvet-card-title">Fashion Design & Garment Making</div><div class="tvet-card-desc">Develop skills in pattern drafting, sewing, and garment production techniques.</div></div>
+    <div class="tvet-card reveal delay-4"><div class="tvet-card-num">04</div><div class="tvet-card-title">Livestock & Beekeeping</div><div class="tvet-card-desc">Training in animal husbandry, poultry management, and commercial beekeeping.</div></div>
+    <div class="tvet-card reveal delay-1"><div class="tvet-card-num">05</div><div class="tvet-card-title">Woodwork & Carpentry</div><div class="tvet-card-desc">Master carpentry, joinery, and furniture making with modern tools and techniques.</div></div>
+    <div class="tvet-card reveal delay-2"><div class="tvet-card-num">06</div><div class="tvet-card-title">Brick Laying & Concreting</div><div class="tvet-card-desc">Construction skills in block laying, brickwork, and concrete finishing for the building industry.</div></div>
+    <div class="tvet-card reveal delay-3"><div class="tvet-card-num">07</div><div class="tvet-card-title">Piping & Plumbing</div><div class="tvet-card-desc">Installation and maintenance of water supply, drainage, and sanitation systems.</div></div>
+    <div class="tvet-card reveal delay-4"><div class="tvet-card-num">08</div><div class="tvet-card-title">Floor Tiling & Interlocking</div><div class="tvet-card-desc">Surface finishing skills including tiling, cladding, and interlocking block installation.</div></div>
+  </div>
+  <div class="tvet-note reveal delay-3">
+    <div class="tvet-note-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12.01" y2="16"/><line x1="12" y1="8" x2="12" y2="12"/></svg></div>
+    <div class="tvet-note-text">All TVET programs are <strong>6 months</strong> in duration and approved by the <strong>Federal Ministry of Education</strong>. Marist Polytechnic Enugu is an accredited FME-TVET Skill Training Centre.</div>
+  </div>
+</section>
+
+<!-- CAMPUS LIFE -->
+<section id="campus">
+  <div class="campus-content">
+    <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Campus Life</div>
+    <h2 class="section-title reveal delay-1">More Than Just<br/><em>a Classroom</em></h2>
+    <div class="campus-items">
+      <div class="campus-item reveal delay-1"><div class="campus-item-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="campus-item-title">ICT/CBT Centre</div><div class="campus-item-desc">Functional ICT/CBT Centre approved by JAMB for UTME and third-party examinations. High-speed internet across campus.</div></div></div>
+      <div class="campus-item reveal delay-2"><div class="campus-item-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><div><div class="campus-item-title">Workshops & Laboratories</div><div class="campus-item-desc">Well-equipped laboratories, workshops, and library/e-library facilities. NBTE resource inspection team marvelled at our facilities.</div></div></div>
+      <div class="campus-item reveal delay-3"><div class="campus-item-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="campus-item-title">Hostel Accommodation</div><div class="campus-item-desc">Well-furnished and affordable hostels for male and female students with 24/7 power and water supply at no extra cost.</div></div></div>
+      <div class="campus-item reveal delay-4"><div class="campus-item-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="campus-item-title">TVET Skill Centre</div><div class="campus-item-desc">FME-approved Skill Training Centre offering 6-month programs in networking, fashion design, livestock, and more.</div></div></div>
+    </div>
+  </div>
+  <div class="campus-mosaic">
+    <div class="mosaic-cell"><img src="/img/image 22.png" alt="Campus 1"/><div class="overlay"></div></div>
+    <div class="mosaic-cell"><img src="/img/maristw.png" alt="Campus 2"/><div class="overlay"></div></div>
+    <div class="mosaic-cell"><img src="/img/maristw.png" alt="Campus 3"/><div class="overlay"></div></div>
+    <div class="mosaic-cell"><img src="/img/image 22.png" alt="Campus 4"/><div class="overlay"></div></div>
+  </div>
+</section>
+
+<!-- ADMISSIONS -->
+<section id="admissions">
+  <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Admissions</div>
+  <h2 class="section-title reveal delay-1">Your Journey <em>Starts Here</em></h2>
+  <p class="section-body reveal delay-2" style="max-width:560px;color:var(--text2)">Follow these four steps to begin your academic journey at Marist Polytechnic Enugu.</p>
+  <div class="admissions-steps">
+    <div class="step reveal delay-1"><div class="step-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="step-num">Step 01</div><div class="step-title">Complete Application</div><div class="step-desc">Fill out the online form with your academic and personal details.</div></div>
+    <div class="step reveal delay-2"><div class="step-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="step-num">Step 02</div><div class="step-title">Submit Documents</div><div class="step-desc">Upload SSCE/WAEC results, birth certificate and passport photo.</div></div>
+    <div class="step reveal delay-3"><div class="step-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div><div class="step-num">Step 03</div><div class="step-title">Entrance Assessment</div><div class="step-desc">Sit for the qualifying exam or JAMB screening for your programme.</div></div>
+    <div class="step reveal delay-4"><div class="step-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="step-num">Step 04</div><div class="step-title">Get Admitted</div><div class="step-desc">Receive your offer letter, pay acceptance fees and begin!</div></div>
+  </div>
+  <div class="admissions-ctas reveal delay-3">
+    <a href="#" class="btn-crimson">Apply Online Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a href="#" class="btn-outline">Download Prospectus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-header">
+    <div>
+      <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Testimonials</div>
+      <h2 class="section-title reveal delay-1" style="margin-bottom:0">Words From Our <em>Alumni</em></h2>
+    </div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal delay-1"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Marist Polytechnic gave me the technical foundation and confidence I needed to launch my engineering career. The hands-on training is unmatched."</div><div class="testi-author"><div class="testi-avatar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="testi-name">Chukwuemeka Obi</div><div class="testi-role">Civil Engineer, Julius Berger Nigeria</div></div></div></div>
+    <div class="testi-card reveal delay-2"><div class="testi-stars">★★★★★</div><div class="testi-quote">"The ICT department equipped me with real-world skills. Within 6 months of graduation I had my first software development contract."</div><div class="testi-author"><div class="testi-avatar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="testi-name">Adaeze Nwosu</div><div class="testi-role">Software Developer, Flutterwave</div></div></div></div>
+    <div class="testi-card reveal delay-3"><div class="testi-stars">★★★★★</div><div class="testi-quote">"From dedicated lecturers to the incredible campus community — Marist shaped me into the entrepreneur I am today."</div><div class="testi-author"><div class="testi-avatar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="testi-name">Ifeanyi Eze</div><div class="testi-role">Founder, AgroTech Ventures Ltd</div></div></div></div>
+  </div>
+</section>
+
+<!-- RECTOR'S MESSAGE -->
+<!-- <section id="rector">
+  <div class="rector-img-side reveal-left">
+    <div class="rector-img-placeholder">
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+  </div>
+  <div class="rector-content">
+    <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>From the Rector</div>
+    <h2 class="section-title reveal delay-1">A Word From<br/><em>Our Rector</em></h2>
+    <div class="rector-quote reveal delay-2">
+      "It is with great honour and pleasure that I welcome all our esteemed past, present and future students to Marist Polytechnic. This is a website with a difference — bringing you face to face with the happenings in and around our campus."
+    </div>
+    <p class="rector-body reveal delay-3">Marist Polytechnic Enugu has magnificent facilities that drive polytechnic education to greater heights. When NBTE came for resource inspection, the team marvelled at the quality and quantity of facilities and equipment in the institution. We lay emphasis on practical skills and hands-on training to equip students with industry-ready skills.</p>
+    <p class="rector-body reveal delay-3">We have reached advanced talks with Alex Ekwueme Federal University, Ndufu-Alike (AEFUNAI) for degree program affiliation. Once through, Marist Polytechnic will start running degree programs in affiliation with AEFUNAI.</p>
+    <div class="rector-signature reveal delay-4">
+      <div class="rector-name">The Rector</div>
+      <div class="rector-title">Marist Polytechnic, Enugu</div>
+    </div>
+    <div class="rector-affil reveal delay-4">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      <span>Affiliation with AEFUNAI in progress — degree programs coming soon</span>
+    </div>
+  </div>
+</section> -->
+
+<!-- NEWS & EVENTS -->
+<section id="news">
+  <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6z"/></svg>News & Events</div>
+  <h2 class="section-title reveal delay-1">Latest from <em>Marist</em></h2>
+  <div class="news-grid">
+    <div class="news-card featured reveal delay-1"><div class="news-card-img"><div class="news-card-img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div></div><div class="news-card-body"><div class="news-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg> Award</div><div class="news-card-title">Marist Polytechnic Named Best Technical College in Southeast Nigeria 2025</div><div class="news-card-meta"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> December 10, 2025 · 5 min read</div></div></div>
+    <div class="news-card reveal delay-2"><div class="news-card-img"><div class="news-card-img-placeholder"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/></svg></div></div><div class="news-card-body"><div class="news-tag">Event</div><div class="news-card-title">2026 Convocation Ceremony — Save the Date</div><div class="news-card-meta">November 20, 2025</div></div></div>
+    <div class="news-card reveal delay-3"><div class="news-card-img"><div class="news-card-img-placeholder"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div></div><div class="news-card-body"><div class="news-tag">Research</div><div class="news-card-title">ICT Students Win National Hackathon with AI Health App</div><div class="news-card-meta">November 5, 2025</div></div></div>
+    <div class="news-card reveal delay-4"><div class="news-card-img"><div class="news-card-img-placeholder"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg></div></div><div class="news-card-body"><div class="news-tag">Admissions</div><div class="news-card-title">2025/2026 ND & HND Admission Forms Now Open</div><div class="news-card-meta">October 30, 2025</div></div></div>
+    <div class="news-card reveal delay-5"><div class="news-card-img"><div class="news-card-img-placeholder"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div></div><div class="news-card-body"><div class="news-tag">Partnership</div><div class="news-card-title">Marist Signs MOU with Microsoft Africa for Student Training</div><div class="news-card-meta">October 12, 2025</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-content">
+    <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Get in Touch</div>
+    <h2 class="section-title reveal delay-1">We're Here<br/><em>for You</em></h2>
+    <p class="section-body reveal delay-2" style="color:var(--text2)">Reach out to our admissions office, student services, or any department. We're happy to help.</p>
+    <div class="contact-info-list">
+      <div class="contact-info-item reveal delay-1"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="contact-info-label">Address</div><div class="contact-info-val">Marist Brothers Road, Emene, Enugu State, Nigeria</div></div></div>
+      <div class="contact-info-item reveal delay-2"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.29a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 15z"/></svg></div><div><div class="contact-info-label">Phone</div><div class="contact-info-val">Contact us for enquiries</div></div></div>
+      <div class="contact-info-item reveal delay-3"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-info-label">Email</div><div class="contact-info-val">info@maristpolyenugu.edu.ng</div></div></div>
+      <div class="contact-info-item reveal delay-4"><div class="contact-info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-info-label">Office Hours</div><div class="contact-info-val">Monday – Friday: 8:00am – 4:00pm</div></div></div>
+    </div>
+  </div>
+  <div class="contact-form-side">
+    <div class="section-eyebrow reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send a Message</div>
+    <h3 class="section-title reveal delay-1" style="font-size:clamp(24px,2.5vw,36px);margin-bottom:26px">Contact <em>Our Team</em></h3>
+    <div class="form-row reveal delay-1">
+      <div class="form-group"><label>First Name</label><input type="text" placeholder="John"/></div>
+      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"/></div>
+    </div>
+    <div class="form-group reveal delay-2"><label>Email Address</label><input type="email" placeholder="john@example.com"/></div>
+    <div class="form-group reveal delay-2"><label>Subject</label><select><option>Admissions Enquiry</option><option>Academic Records</option><option>Scholarships</option><option>General Information</option></select></div>
+    <div class="form-group reveal delay-3"><label>Message</label><textarea placeholder="Write your message here..."></textarea></div>
+    <button class="form-submit reveal delay-4">Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-cta">
+    <h2>Join 12,000+ students<br/><em>growing their future with us</em></h2>
+    <p>NBTE-accredited National and Higher National Diploma programs. Low school fees payable in instalments. Serene environment in Emene, Enugu.</p>
+    <div class="footer-trust-row">
+      <div class="footer-trust-item"><div class="footer-trust-dot"></div>NBTE Accredited</div>
+      <div class="footer-trust-item"><div class="footer-trust-dot"></div>Est. 2016</div>
+      <div class="footer-trust-item"><div class="footer-trust-dot"></div>FME TVET Centre</div>
+      <div class="footer-trust-item"><div class="footer-trust-dot"></div>13 Programs</div>
+      <div class="footer-trust-item"><div class="footer-trust-dot"></div>AEFUNAI Affiliation</div>
+    </div>
+  </div>
+  <div class="footer-big-text">
+    <span>MARIST POLYTECHNIC</span>
+  </div>
+  <div class="footer-sep"></div>
+  <div class="footer-body">
+    <div class="footer-col">
+   <div class="nav-logo">
+    <img src="/img/maristlogo.png" alt="Marist Logo"/>
+    <div class="nav-logo-text">
+      <div class="brand">MARIST</div>
+      <div class="sub">Polytechnic Enugu</div>
+    </div>
+  </div>
+      <p class="footer-brand-desc">Empowering future leaders through quality technical education, industry-ready skills, and hands-on training since 2016 — located in a serene environment in Emene, Enugu.</p>
+      <div class="footer-accr">
+        <div class="footer-accr-dot"></div>
+        <span><strong>NBTE Fully Accredited</strong>National Board for Technical Education, Nigeria</span>
+      </div>
+      <div class="footer-social-label">Follow Us</div>
+      <div class="footer-socials-row">
+        <div class="fsoc-btn" title="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+        <div class="fsoc-btn" title="Twitter/X"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+        <div class="fsoc-btn" title="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <div class="fsoc-btn" title="YouTube"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>
+        <div class="fsoc-btn" title="LinkedIn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-heading">Academics</div>
+      <ul class="footer-link-list">
+        <li><a href="#">ND Biomedical Engineering <span class="arr">→</span></a></li>
+        <li><a href="#">ND Computer Engineering <span class="arr">→</span></a></li>
+        <li><a href="#">ND Electrical/Electronics <span class="arr">→</span></a></li>
+        <li><a href="#">ND Computer Science <span class="arr">→</span></a></li>
+        <li><a href="#">ND Science Lab Technology <span class="arr">→</span></a></li>
+        <li><a href="#">ND Business Administration <span class="arr">→</span></a></li>
+        <li><a href="#">HND Programs <span class="arr">→</span></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-heading">Pages</div>
+      <ul class="footer-link-list">
+        <li><a href="#hero">Home <span class="arr">→</span></a></li>
+        <li><a href="#about">About <span class="arr">→</span></a></li>
+        <li><a href="#programs">Academics <span class="arr">→</span></a></li>
+        <li><a href="#campus">Campus Life <span class="arr">→</span></a></li>
+        <li><a href="#news">News & Events <span class="arr">→</span></a></li>
+        <li><a href="#admissions">Admissions <span class="arr">→</span></a></li>
+        <li><a href="#contact">Contact <span class="arr">→</span></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-heading">Quick Links</div>
+      <ul class="footer-link-list">
+        <li><a href="#">Apply Online <span class="arr">→</span></a></li>
+        <li><a href="#">Scholarships <span class="arr">→</span></a></li>
+        <li><a href="#">Student Portal <span class="arr">→</span></a></li>
+        <li><a href="#">Staff Directory <span class="arr">→</span></a></li>
+        <li><a href="#">Download Prospectus <span class="arr">→</span></a></li>
+        <li><a href="#">Campus Map <span class="arr">→</span></a></li>
+        <li><a href="#">FAQ <span class="arr">→</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <p>© 2026 Marist Polytechnic Enugu. All rights reserved.</p>
+      <ul class="footer-bottom-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Sitemap</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </div>
+    <div class="footer-nbte-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>NBTE Accredited Institution</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // === MOBILE MENU ===
+  document.getElementById('hamburger').addEventListener('click',()=>{
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  // === NAV SCROLL EFFECT ===
+  const nav=document.getElementById('siteNav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+  // === SCROLL PROGRESS BAR ===
+  const progressBar=document.getElementById('scrollProgress');
+  window.addEventListener('scroll',()=>{
+    const scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+    const scrollHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    progressBar.style.width=(scrollTop/scrollHeight*100)+'%';
+  });
+
+  // === CUSTOM CURSOR ===
+  const cursor=document.querySelector('.cursor-dot');
+  const trail=document.querySelector('.cursor-trail');
+  let mx=0,my=0,tx=0,ty=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  function animateCursor(){
+    tx+=(mx-tx)*0.15;ty+=(my-ty)*0.15;
+    cursor.style.left=mx+'px';cursor.style.top=my+'px';
+    trail.style.left=tx+'px';trail.style.top=ty+'px';
+    requestAnimationFrame(animateCursor);
+  }
+  if(window.matchMedia('(pointer:fine)').matches) animateCursor();
+  document.querySelectorAll('a,button,.prog-card,.testi-card,.news-card,.feat-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
+  });
+
+  // === REVEAL ANIMATIONS ===
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.campus-item,.contact-info-item').forEach(el=>obs.observe(el));
+
+  // === NUMBER COUNTERS ===
+  const countObs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target;
+        const target=el.textContent;
+        if(!isNaN(target)){
+          let current=0;const end=parseInt(target);const duration=1500;const step=end/(duration/16);
+          const timer=setInterval(()=>{
+            current+=step;if(current>=end){current=end;clearInterval(timer);}
+            el.textContent=Math.floor(current);
+          },16);
+        }
+        el.classList.add('counted');countObs.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  document.querySelectorAll('.about-stat-num').forEach(el=>countObs.observe(el));
+
+  // === PARALLAX IMAGES ===
+  const parallaxImgs=document.querySelectorAll('.about-img-side img,.mosaic-cell img');
+  window.addEventListener('scroll',()=>{
+    parallaxImgs.forEach(img=>{
+      const rect=img.parentElement.getBoundingClientRect();
+      if(rect.top<window.innerHeight&&rect.bottom>0){
+        const speed=0.05;
+        const offset=(window.innerHeight-rect.top)*speed;
+        img.style.transform=`translateY(${offset}px) scale(1.05)`;
+      }
+    });
+  });
+
+  // === MAGNETIC BUTTONS ===
+  document.querySelectorAll('.btn-crimson,.btn-hero,.btn-gold,.btn-outline,.nav-cta').forEach(btn=>{
+    btn.classList.add('btn-magnetic');
+    btn.addEventListener('mousemove',e=>{
+      const rect=btn.getBoundingClientRect();
+      const x=e.clientX-rect.left-rect.width/2;
+      const y=e.clientY-rect.top-rect.height/2;
+      btn.style.transform=`translate(${x*0.2}px,${y*0.2}px)`;
+    });
+    btn.addEventListener('mouseleave',()=>{
+      btn.style.transform='';
+    });
+  });
+
+  // === 3D CARD TILT ===
+  document.querySelectorAll('.prog-card,.testi-card,.news-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const rect=card.getBoundingClientRect();
+      const x=(e.clientX-rect.left)/rect.width-0.5;
+      const y=(e.clientY-rect.top)/rect.height-0.5;
+      card.style.transform=`perspective(1000px) rotateX(${y*-8}deg) rotateY(${x*8}deg) translateY(-5px)`;
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform='';
+    });
+  });
+
+  // === SMOOTH SCROLL FOR ANCHORS ===
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+  });
+
+  // === ACTIVE NAV LINKS ===
+  const secs=document.querySelectorAll('section[id]');
+  const nls=document.querySelectorAll('.nav-links a');
+  const sectionLabel=document.getElementById('sectionLabel');
+  const sectionNames={hero:'Home',about:'About',programs:'Academics',tvet:'TVET',campus:'Campus',admissions:'Admissions',testimonials:'Testimonials',rector:'Rector',news:'News',contact:'Contact'};
+  window.addEventListener('scroll',()=>{
+    let cur='';
+    secs.forEach(s=>{if(scrollY>=s.offsetTop-100)cur=s.id;});
+    nls.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+    if(sectionLabel&&sectionNames[cur]){sectionLabel.textContent=sectionNames[cur];sectionLabel.classList.add('visible');}
+  });
+
+  // === IMAGE LOADING ===
+  document.querySelectorAll('.photo-card img,.building-card img,.about-img-side img').forEach(img=>{
+    if(img.complete) img.classList.add('loaded');
+    else img.addEventListener('load',()=>img.classList.add('loaded'));
+  });
+</script>
+<div class="section-label" id="sectionLabel">About</div>
+</body>
+</html>
