@@ -133,7 +133,7 @@ export const AboutPage: React.FC = () => {
       <ScrollSection className="about-rector">
         <div className="about-rector__inner">
           <motion.div className="about-rector__img" variants={itemVariantsLeft}>
-            <img src="/img/rector.jpg" alt="Rector" className="loaded" />
+            <img src="/img/rector.jpeg" alt="Rector" className="loaded" />
           </motion.div>
           <div className="about-rector__text">
             <motion.div className="section-eyebrow" variants={itemVariants}>
