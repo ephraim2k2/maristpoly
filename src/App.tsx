@@ -10,6 +10,7 @@ import { AcademicsPage } from './pages/AcademicsPage';
 import { CampusPage } from './pages/CampusPage';
 import { EventsPage } from './pages/EventsPage';
 import { ContactPage } from './pages/ContactPage';
+import { CalendarPage } from './pages/CalendarPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,6 +35,7 @@ function App() {
           <Route path="/campus" element={<CampusPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/calendar" element={<CalendarPage />} />
         </Routes>
       </main>
       <Footer />

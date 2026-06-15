@@ -130,7 +130,9 @@ export const Footer: React.FC = () => {
             <li><a href="#" onClick={(e) => e.preventDefault()}>Scholarships <span className="arr">→</span></a></li>
             <li><a href="#" onClick={(e) => e.preventDefault()}>Student Portal <span className="arr">→</span></a></li>
             <li><a href="#" onClick={(e) => e.preventDefault()}>Staff Directory <span className="arr">→</span></a></li>
-            <li><a href="#" onClick={(e) => e.preventDefault()}>Download Prospectus <span className="arr">→</span></a></li>
+            <li><a href="/img/Student Handbook (Ready for Printing - December, 2023).pdf" target="_blank" rel="noopener noreferrer">Student Handbook <span className="arr">→</span></a></li>
+            <li><Link to="/calendar">Academic Calendar <span className="arr">→</span></Link></li>
+            <li><a href="/img/School FEES BREAKDOWN.docx" target="_blank" rel="noopener noreferrer" download>School Fees Breakdown <span className="arr">→</span></a></li>
             <li><Link to="/campus">Campus Map <span className="arr">→</span></Link></li>
             <li><a href="#" onClick={(e) => e.preventDefault()}>FAQ <span className="arr">→</span></a></li>
           </ul>

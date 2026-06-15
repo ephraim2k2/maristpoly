@@ -133,12 +133,7 @@ export const AboutPage: React.FC = () => {
       <ScrollSection className="about-rector">
         <div className="about-rector__inner">
           <motion.div className="about-rector__img" variants={itemVariantsLeft}>
-            <div className="rector-img-placeholder">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            </div>
+            <img src="/img/rector.jpg" alt="Rector" className="loaded" />
           </motion.div>
           <div className="about-rector__text">
             <motion.div className="section-eyebrow" variants={itemVariants}>

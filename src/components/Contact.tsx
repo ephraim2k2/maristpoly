@@ -84,7 +84,7 @@ export const Contact: React.FC = () => {
             <div>
               <div className="contact-info-label">Call Admissions</div>
               <div className="contact-info-val">
-                +234 (0) 803 123 4567<br />
+                +234 (0) 706 300 5606<br />
                 +234 (0) 805 987 6543
               </div>
             </div>

@@ -130,7 +130,7 @@ export const Hero: React.FC = () => {
         <p className="hero-desc">
           A serene and conducive environment for effective teaching and learning. NBTE-accredited National and Higher National Diploma programs since 2016.
         </p>
-        <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+        <div className="hero-ctas">
           <a href="#programs" className="btn-hero" onClick={(e) => handleLinkClick(e, 'programs')}>
             Explore Programs{' '}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
