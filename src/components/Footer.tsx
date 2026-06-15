@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
     <footer className="site-footer">
       <div className="footer-cta">
         <h2>
-          Join 12,000+ students<br />
+          Join 2,000+ students<br />
           <em>growing their future with us</em>
         </h2>
         <p>
