@@ -119,6 +119,125 @@ export const CampusPage: React.FC = () => {
         </div>
       </ScrollSection>
 
+      {/* ── DEPARTMENTAL WEAR ── */}
+      <ScrollSection className="campus-dresscode" style={{ background: 'var(--off)' }}>
+        <div className="campus-facilities__inner">
+          <motion.div className="section-eyebrow" variants={itemVariants} style={{ justifyContent: 'center' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M20.38 3.46L16 7.83l-1.42-1.42 4.38-4.38a1 1 0 0 1 1.42 0l0.01 0.01a1 1 0 0 1 0 1.42z" />
+              <path d="M12.18 7.28L4.62 14.84a2 2 0 0 0-.58 1.41V20h3.76a2 2 0 0 0 1.41-.58l7.56-7.56-4.59-4.58z" />
+            </svg>
+            Student Affairs
+          </motion.div>
+          <motion.h2 className="section-title" variants={itemVariants} style={{ textAlign: 'center' }}>
+            Departmental <em>Wear</em>
+          </motion.h2>
+          <motion.p className="section-body" variants={itemVariants} style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 40px' }}>
+            Official guidelines from the Office of the Dean of Student Affairs. Departmental wears must be worn on a daily basis for lectures and other official activities of the Polytechnic.
+          </motion.p>
+
+          <motion.div className="table-responsive" variants={itemVariants}>
+            <table className="modern-table">
+              <thead>
+                <tr>
+                  <th className="sn-col">S/No</th>
+                  <th>Programme</th>
+                  <th>Down</th>
+                  <th>Top (Shirt)</th>
+                  <th>Footwear</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  {
+                    no: 1,
+                    programme: 'Science Laboratory Technology',
+                    down: 'A pair of Black Trousers/Skirt',
+                    top: 'White Shirt',
+                    color: '#ffffff',
+                    border: '#dcdcdc',
+                    footwear: 'A pair of Black Shoes',
+                    remarks: 'Well tucked in, and with a groomed hairstyle'
+                  },
+                  {
+                    no: 2,
+                    programme: 'Computer Science',
+                    down: 'A pair of Black Trousers/Skirt',
+                    top: 'Green Shirt',
+                    color: '#2e7d32',
+                    footwear: 'A pair of Black Shoes',
+                    remarks: 'Well tucked in, and with a groomed hairstyle'
+                  },
+                  {
+                    no: 3,
+                    programme: 'Computer Engineering Technology',
+                    down: 'A pair of Black Trousers/Skirt',
+                    top: 'Pink Shirt',
+                    color: '#ec407a',
+                    footwear: 'A pair of Black Shoes',
+                    remarks: 'Well tucked in, and with a groomed hairstyle'
+                  },
+                  {
+                    no: 4,
+                    programme: 'Electrical/ Electronic Engineering Technology',
+                    down: 'A pair of Black Trousers/Skirt',
+                    top: 'Wine Red (Maroon) Shirt',
+                    color: '#800020',
+                    footwear: 'A pair of Black Shoes',
+                    remarks: 'Well tucked in, and with a groomed hairstyle'
+                  },
+                  {
+                    no: 5,
+                    programme: 'Business Administration and Management',
+                    down: 'A pair of Black Trousers/Skirt',
+                    top: 'Sky Blue Shirt',
+                    color: '#87ceeb',
+                    footwear: 'A pair of Black Shoes',
+                    remarks: 'Well tucked in, and with a groomed hairstyle'
+                  }
+                ].map((row) => (
+                  <tr key={row.no}>
+                    <td className="sn-col">{row.no}</td>
+                    <td style={{ fontWeight: 600 }}>{row.programme}</td>
+                    <td>{row.down}</td>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ 
+                          width: '12px', 
+                          height: '12px', 
+                          borderRadius: '50%', 
+                          background: row.color, 
+                          border: row.border ? `1px solid ${row.border}` : 'none',
+                          boxShadow: '0 1px 3px rgba(0,0,0,0.15)'
+                        }} />
+                        {row.top}
+                      </span>
+                    </td>
+                    <td>{row.footwear}</td>
+                    <td style={{ fontSize: '13px', color: 'var(--text3)' }}>{row.remarks}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </motion.div>
+
+          <motion.div className="tvet-note" variants={itemVariants} style={{ marginTop: '30px', background: 'rgba(139,0,0,0.03)', borderColor: 'rgba(139,0,0,0.1)' }}>
+            <div className="tvet-note-icon" style={{ background: 'rgba(139,0,0,0.06)', borderColor: 'rgba(139,0,0,0.12)' }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+            </div>
+            <div className="tvet-note-text" style={{ fontSize: '13.5px', color: 'var(--text2)' }}>
+              <strong>Motto:</strong> Science and Technology for Holistic Human Development
+            </div>
+          </motion.div>
+        </div>
+      </ScrollSection>
+
+
       {/* ── STUDENT LIFE ── */}
       <ScrollSection className="campus-life">
         <div className="campus-life__inner">
