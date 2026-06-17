@@ -11,12 +11,25 @@ import { CampusPage } from './pages/CampusPage';
 import { EventsPage } from './pages/EventsPage';
 import { ContactPage } from './pages/ContactPage';
 import { CalendarPage } from './pages/CalendarPage';
+import { StrategicPlanPage } from './pages/StrategicPlanPage';
+import { OrganigramPage } from './pages/OrganigramPage';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      const timer = setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   return null;
 }
 
@@ -36,6 +49,8 @@ function App() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/strategic-plan" element={<StrategicPlanPage />} />
+          <Route path="/organigram" element={<OrganigramPage />} />
         </Routes>
       </main>
       <Footer />

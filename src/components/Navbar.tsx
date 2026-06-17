@@ -69,17 +69,11 @@ export const Navbar: React.FC = () => {
   const [scrollWidth, setScrollWidth] = useState(0);
   const [isTansianOpen, setIsTansianOpen] = useState(false);
   const [isMobileTansianOpen, setIsMobileTansianOpen] = useState(false);
+  const [isAcademicsOpen, setIsAcademicsOpen] = useState(false);
+  const [isMobileAcademicsOpen, setIsMobileAcademicsOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
+  const academicsDropdownRef = useRef<HTMLLIElement>(null);
   const location = useLocation();
-
-  const navLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
-    { label: 'Academics', to: '/academics' },
-    { label: 'Campus', to: '/campus' },
-    { label: 'Events', to: '/events' },
-    { label: 'Contact', to: '/contact' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,6 +100,9 @@ export const Navbar: React.FC = () => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsTansianOpen(false);
       }
+      if (academicsDropdownRef.current && !academicsDropdownRef.current.contains(e.target as Node)) {
+        setIsAcademicsOpen(false);
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -116,6 +113,8 @@ export const Navbar: React.FC = () => {
     setIsMobileMenuOpen(false);
     setIsTansianOpen(false);
     setIsMobileTansianOpen(false);
+    setIsAcademicsOpen(false);
+    setIsMobileAcademicsOpen(false);
   }, [location.pathname]);
 
   return (
@@ -130,16 +129,83 @@ export const Navbar: React.FC = () => {
           </div>
         </Link>
         <ul className="nav-links">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                className={location.pathname === link.to ? 'active' : ''}
+          <li>
+            <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
+              About
+            </Link>
+          </li>
+          <li className="nav-dropdown-li" ref={academicsDropdownRef}>
+            <button
+              className={`nav-dropdown-toggle ${isAcademicsOpen ? 'active' : ''} ${location.pathname.startsWith('/academics') ? 'active-page' : ''}`}
+              onClick={() => setIsAcademicsOpen(!isAcademicsOpen)}
+            >
+              Academics
+              <svg
+                className={`tansian-hub-chevron ${isAcademicsOpen ? 'open' : ''}`}
+                width="12" height="12" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" strokeWidth="2"
+                strokeLinecap="round" strokeLinejoin="round"
               >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+
+            <div className={`nav-dropdown-menu ${isAcademicsOpen ? 'open' : ''}`}>
+              <ul className="nav-dropdown-list">
+                <li>
+                  <Link to="/academics" className="nav-dropdown-item font-semibold">
+                    Academics Overview
+                  </Link>
+                </li>
+                <li className="dropdown-divider" />
+                <li>
+                  <a href="#" className="nav-dropdown-item" onClick={(e) => { e.preventDefault(); alert("E-library coming soon!"); }}>
+                    E-library
+                  </a>
+                </li>
+                <li>
+                  <Link to="/organigram" className="nav-dropdown-item">
+                    Organigram & Job Description
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/academics#resources" className="nav-dropdown-item">
+                    Handbook on Condition of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/strategic-plan" className="nav-dropdown-item">
+                    Strategic Development Plan
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/campus#dresscode" className="nav-dropdown-item">
+                    Departmental Wears
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <Link to="/campus" className={location.pathname === '/campus' ? 'active' : ''}>
+              Campus
+            </Link>
+          </li>
+          <li>
+            <Link to="/events" className={location.pathname === '/events' ? 'active' : ''}>
+              Events
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
+              Contact
+            </Link>
+          </li>
           <li className="tansian-hub-li" ref={dropdownRef}>
             <button
               className={`tansian-hub-toggle ${isTansianOpen ? 'active' : ''}`}
@@ -225,12 +291,59 @@ export const Navbar: React.FC = () => {
             </svg>
             About
           </Link>
-          <Link to="/academics">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+          {/* Mobile Academics Dropdown Accordion */}
+          <button
+            className="mobile-tansian-toggle"
+            onClick={() => setIsMobileAcademicsOpen(!isMobileAcademicsOpen)}
+            style={{ borderBottom: '1px solid var(--border)', borderRadius: 0, width: '100%', textAlign: 'left', padding: '14px 0' }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              </svg>
+              Academics
+            </span>
+            <svg
+              className={`mobile-tansian-chevron ${isMobileAcademicsOpen ? 'open' : ''}`}
+              width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="2"
+              strokeLinecap="round" strokeLinejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
             </svg>
-            Academics
-          </Link>
+          </button>
+          <div className={`mobile-tansian-items ${isMobileAcademicsOpen ? 'open' : ''}`} style={{ background: 'rgba(0,0,0,0.02)', borderBottom: isMobileAcademicsOpen ? '1px solid var(--border)' : 'none' }}>
+            <Link to="/academics" className="mobile-tansian-item" style={{ paddingLeft: '26px' }}>
+              <div>
+                <div className="mobile-tansian-name" style={{ fontSize: '14px', fontWeight: 600 }}>Academics Overview</div>
+              </div>
+            </Link>
+            <a href="#" className="mobile-tansian-item" style={{ paddingLeft: '26px' }} onClick={(e) => { e.preventDefault(); alert("E-library coming soon!"); }}>
+              <div>
+                <div className="mobile-tansian-name" style={{ fontSize: '14px' }}>E-library</div>
+              </div>
+            </a>
+            <Link to="/organigram" className="mobile-tansian-item" style={{ paddingLeft: '26px' }}>
+              <div>
+                <div className="mobile-tansian-name" style={{ fontSize: '14px' }}>Organigram & Job Description</div>
+              </div>
+            </Link>
+            <Link to="/academics#resources" className="mobile-tansian-item" style={{ paddingLeft: '26px' }}>
+              <div>
+                <div className="mobile-tansian-name" style={{ fontSize: '14px' }}>Handbook on Condition of Service</div>
+              </div>
+            </Link>
+            <Link to="/strategic-plan" className="mobile-tansian-item" style={{ paddingLeft: '26px' }}>
+              <div>
+                <div className="mobile-tansian-name" style={{ fontSize: '14px' }}>Strategic Development Plan</div>
+              </div>
+            </Link>
+            <Link to="/campus#dresscode" className="mobile-tansian-item" style={{ paddingLeft: '26px' }}>
+              <div>
+                <div className="mobile-tansian-name" style={{ fontSize: '14px' }}>Departmental Wears</div>
+              </div>
+            </Link>
+          </div>
           <Link to="/campus">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <rect x="2" y="7" width="20" height="14" rx="2" />

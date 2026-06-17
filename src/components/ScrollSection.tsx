@@ -8,6 +8,7 @@ interface ScrollSectionProps {
   id?: string;
   fullHeight?: boolean;
   style?: React.CSSProperties;
+  viewportAmount?: number;
 }
 
 const sectionVariants: Variants = {
@@ -74,6 +75,7 @@ export const ScrollSection: React.FC<ScrollSectionProps> = ({
   id,
   fullHeight = true,
   style,
+  viewportAmount = 0.2,
 }) => {
   return (
     <motion.section
@@ -83,7 +85,7 @@ export const ScrollSection: React.FC<ScrollSectionProps> = ({
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: viewportAmount }}
     >
       {children}
     </motion.section>

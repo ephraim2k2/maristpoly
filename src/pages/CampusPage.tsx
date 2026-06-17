@@ -120,7 +120,7 @@ export const CampusPage: React.FC = () => {
       </ScrollSection>
 
       {/* ── DEPARTMENTAL WEAR ── */}
-      <ScrollSection className="campus-dresscode" style={{ background: 'var(--off)' }}>
+      <ScrollSection id="dresscode" className="campus-dresscode" style={{ background: 'var(--off)' }}>
         <div className="campus-facilities__inner">
           <motion.div className="section-eyebrow" variants={itemVariants} style={{ justifyContent: 'center' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="2.5" strokeLinecap="round">

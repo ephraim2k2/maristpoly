@@ -110,6 +110,11 @@ export const Footer: React.FC = () => {
             <li><Link to="/academics">HND Programs <span className="arr">→</span></Link></li>
             <li><Link to="/academics">TVET Skills <span className="arr">→</span></Link></li>
             <li><Link to="/academics">Admissions <span className="arr">→</span></Link></li>
+            <li><a href="#" onClick={(e) => { e.preventDefault(); alert("E-library coming soon!"); }}>E-library <span className="arr">→</span></a></li>
+            <li><Link to="/organigram">Organigram & Job Description <span className="arr">→</span></Link></li>
+            <li><Link to="/academics#resources">Handbook on Condition of Service <span className="arr">→</span></Link></li>
+            <li><Link to="/strategic-plan">Strategic Development Plan <span className="arr">→</span></Link></li>
+            <li><Link to="/campus#dresscode">Departmental Wears <span className="arr">→</span></Link></li>
           </ul>
         </div>
         <div className="footer-col">

@@ -184,7 +184,7 @@ export const AcademicsPage: React.FC = () => {
       </ScrollSection>
 
       {/* ── ACADEMIC RESOURCES ── */}
-      <ScrollSection className="acad-resources" style={{ background: 'var(--white)' }}>
+      <ScrollSection className="acad-resources" style={{ background: 'var(--white)' }} id="resources" fullHeight={false} viewportAmount={0.1}>
         <div className="acad-section__inner" style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
           <motion.div className="section-eyebrow" variants={itemVariants} style={{ justifyContent: 'center' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="2.5" strokeLinecap="round">

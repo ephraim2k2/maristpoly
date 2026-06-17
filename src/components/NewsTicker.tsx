@@ -2,7 +2,7 @@ import React from 'react';
 
 export const NewsTicker: React.FC = () => {
   const announcements = [
-    "2025/2026 Admission Forms Now Available — Apply Online",
+    "2026/2027 Admission Forms Now Available — Apply Online",
     "Marist Polytechnic wins Best Tech College Award 2025",
     "New Engineering & ICT Department Opens This Semester",
     "Orientation for New Students: Monday 14th January, 9am",
