@@ -525,7 +525,8 @@
         align-content:center;gap:20px
       }
       .hero-left,.hero-right{display:none}
-      .title-line2{justify-content:center}
+      .tagline{justify-content:center}
+      .title-line2{justify-content:center;flex-wrap:wrap;gap:10px}
       .hero-title{font-size:clamp(42px,11vw,72px);margin-bottom:20px}
       .hero-desc{text-align:center;margin:0 auto 28px;font-size:14px;max-width:360px}
       .hero-ctas{justify-content:center}
