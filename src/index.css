@@ -582,6 +582,13 @@
       .hamburger{display:flex}
       /* HERO */
       #hero{padding:100px 22px 64px}
+      #hero::before,
+      #hero::after,
+      .hero-canvas,
+      .hero-pattern,
+      .hero-geo {
+        display: none !important;
+      }
       .hero-title{font-size:clamp(38px,12vw,60px)}
       .tagline{font-size:11px}
       .btn-hero,.btn-gold{padding:12px 22px;font-size:12px}
