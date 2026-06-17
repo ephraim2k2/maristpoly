@@ -587,7 +587,8 @@
       #hero::after,
       .hero-canvas,
       .hero-pattern,
-      .hero-geo {
+      .hero-geo,
+      .spin-badge-wrap {
         display: none !important;
       }
       .hero-title{font-size:clamp(38px,12vw,60px)}
