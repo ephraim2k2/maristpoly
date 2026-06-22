@@ -442,8 +442,24 @@ export const OrganigramPage: React.FC = () => {
                     <p>Academic Exams</p>
                   </div>
                   <div className="org-card faculty">
-                    <h5>6 Academic Schools</h5>
-                    <p className="school-list">Engineering, Sciences, Business, Environmental, Financial, Communication</p>
+                    <h5>School of Sciences and Technology</h5>
+                    <p className="school-list">Heads of Department</p>
+                  </div>
+                  <div className="org-card faculty">
+                    <h5>School of Environmental Studies</h5>
+                    <p className="school-list">Heads of Department</p>
+                  </div>
+                  <div className="org-card faculty">
+                    <h5>School of General Studies</h5>
+                    <p className="school-list">Heads of Department</p>
+                  </div>
+                  <div className="org-card faculty">
+                    <h5>School of Engineering</h5>
+                    <p className="school-list">Heads of Department</p>
+                  </div>
+                  <div className="org-card faculty">
+                    <h5>School of Business Administration</h5>
+                    <p className="school-list">Heads of Department</p>
                   </div>
                 </div>
               </div>
@@ -481,6 +497,18 @@ export const OrganigramPage: React.FC = () => {
                   <div className="org-card static-node">
                     <h5>Public Relations Officer</h5>
                     <p>Media & PR</p>
+                  </div>
+                  <div className="org-card static-node">
+                    <h5>Security Staff</h5>
+                    <p>Registry Office</p>
+                  </div>
+                  <div className="org-card static-node">
+                    <h5>Clerical Officers</h5>
+                    <p>Registry Office</p>
+                  </div>
+                  <div className="org-card static-node">
+                    <h5>Messengers</h5>
+                    <p>Registry Office</p>
                   </div>
                 </div>
               </div>

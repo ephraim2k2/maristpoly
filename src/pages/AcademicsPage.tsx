@@ -7,37 +7,37 @@ import { ScrollSection, itemVariants } from '../components/ScrollSection';
 const ndPrograms = [
   {
     name: 'ND Biomedical Engineering',
-    desc: 'Engineering/Tech/Env faculty — 2-year National Diploma in biomedical engineering technology. Learn to maintain, calibrate, and design medical equipment.',
+    desc: 'School of Engineering — 2-year National Diploma in biomedical engineering technology. Learn to maintain, calibrate, and design medical equipment.',
     icon: <><circle cx="12" cy="12" r="3" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07" /></>,
   },
   {
     name: 'ND Computer Engineering',
-    desc: 'Engineering/Tech/Env faculty — practical training in computer hardware, systems engineering, and digital circuit design.',
+    desc: 'School of Engineering — practical training in computer hardware, systems engineering, and digital circuit design.',
     icon: <><rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></>,
   },
   {
     name: 'ND Electrical/Electronics',
-    desc: 'Engineering/Tech/Env faculty — 2-year diploma in electrical and electronics engineering with power systems and control training.',
+    desc: 'School of Engineering — 2-year diploma in electrical and electronics engineering with power systems and control training.',
     icon: <><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></>,
   },
   {
     name: 'ND Estate Management',
-    desc: 'Engineering/Tech/Env faculty — National Diploma in Estate Management and Valuation with practical property law.',
+    desc: 'School of Environmental Studies — National Diploma in Estate Management and Valuation with practical property law.',
     icon: <><circle cx="13.5" cy="6.5" r="3.5" /><path d="M9.5 20.5a3.5 3.5 0 0 1 7 0H9.5z" /><path d="M9 12H4a2 2 0 0 0-2 2v6h7" /><path d="M15 12h5a2 2 0 0 1 2 2v6h-7" /></>,
   },
   {
     name: 'ND Science Lab Technology',
-    desc: 'Health Sciences faculty — 2-year ND in Science Laboratory Technology with modern lab equipment training.',
+    desc: 'School of Sciences and Technology — 2-year ND in Science Laboratory Technology with modern lab equipment training.',
     icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
   },
   {
     name: 'ND Computer Science',
-    desc: 'Sciences faculty — software development, programming, algorithms, and computing fundamentals.',
+    desc: 'School of Sciences and Technology — software development, programming, algorithms, and computing fundamentals.',
     icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
   },
   {
     name: 'ND Business Administration',
-    desc: 'Social Sciences faculty — 2-year ND in Business Administration and Management with entrepreneurship training.',
+    desc: 'School of Business Administration — 2-year ND in Business Administration and Management with entrepreneurship training.',
     icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 0 0 6.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 0 0 6.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,
   },
 ];
@@ -68,7 +68,7 @@ export const AcademicsPage: React.FC = () => {
         eyebrow="Academics"
         title="Our"
         titleAccent="Programs"
-        subtitle="NBTE-accredited National and Higher National Diploma programs across Engineering, Sciences, and Social Sciences faculties. Plus FME-approved TVET skill training."
+        subtitle="NBTE-accredited National and Higher National Diploma programs across our various Schools including Engineering, Sciences, and Business Administration. Plus FME-approved TVET skill training."
         backgroundImage="/img/backgrund.png"
         icon={
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -91,7 +91,7 @@ export const AcademicsPage: React.FC = () => {
             ND <em>Programs</em>
           </motion.h2>
           <motion.p className="section-body" variants={itemVariants}>
-            Our 2-year National Diploma programs provide foundational knowledge and practical skills across three faculties.
+            Our 2-year National Diploma programs provide foundational knowledge and practical skills across our various Schools.
           </motion.p>
           <motion.div className="acad-grid" variants={itemVariants}>
             {ndPrograms.map((prog, i) => (
@@ -269,6 +269,50 @@ export const AcademicsPage: React.FC = () => {
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
               </a>
+            </div>
+
+            {/* Handbook on Condition of Service */}
+            <div className="resource-card">
+              <div className="resource-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="2" strokeLinecap="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </div>
+              <div className="resource-info">
+                <h4>Handbook on Condition of Service</h4>
+                <p>Guidelines, terms, and working conditions for Marist Polytechnic staff.</p>
+              </div>
+              <a href="/img/Student Handbook (Ready for Printing - December, 2023).pdf" target="_blank" rel="noopener noreferrer" className="resource-download">
+                Download PDF
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Strategic Development Plan */}
+            <div className="resource-card">
+              <div className="resource-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="2" strokeLinecap="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" />
+                </svg>
+              </div>
+              <div className="resource-info">
+                <h4>Strategic Development Plan</h4>
+                <p>The vision, goals, and strategic initiatives for the future of the institution.</p>
+              </div>
+              <Link to="/strategic-plan" className="resource-download">
+                View Plan
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M5 12h14" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
             </div>
 
           </motion.div>

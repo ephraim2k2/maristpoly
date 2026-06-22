@@ -37,7 +37,7 @@ export const Programs: React.FC = () => {
             </svg>
           </div>
           <div className="prog-name">ND Biomedical Engineering</div>
-          <div className="prog-desc">Engineering/Tech/Env faculty — 2-year National Diploma in biomedical engineering technology.</div>
+          <div className="prog-desc">School of Engineering — 2-year National Diploma in biomedical engineering technology.</div>
           <a href="#" className="prog-link" onClick={(e) => e.preventDefault()}>
             Learn more{' '}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2.5" strokeLinecap="round">
@@ -55,7 +55,7 @@ export const Programs: React.FC = () => {
             </svg>
           </div>
           <div className="prog-name">ND Computer Engineering</div>
-          <div className="prog-desc">Engineering/Tech/Env faculty — practical training in computer hardware and systems engineering.</div>
+          <div className="prog-desc">School of Engineering — practical training in computer hardware and systems engineering.</div>
           <a href="#" className="prog-link" onClick={(e) => e.preventDefault()}>
             Learn more{' '}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2.5" strokeLinecap="round">
@@ -72,7 +72,7 @@ export const Programs: React.FC = () => {
             </svg>
           </div>
           <div className="prog-name">ND Electrical/Electronics</div>
-          <div className="prog-desc">Engineering/Tech/Env faculty — 2-year diploma in electrical and electronics engineering.</div>
+          <div className="prog-desc">School of Engineering — 2-year diploma in electrical and electronics engineering.</div>
           <a href="#" className="prog-link" onClick={(e) => e.preventDefault()}>
             Learn more{' '}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2.5" strokeLinecap="round">
@@ -91,7 +91,7 @@ export const Programs: React.FC = () => {
             </svg>
           </div>
           <div className="prog-name">ND Estate Management</div>
-          <div className="prog-desc">Engineering/Tech/Env faculty — National Diploma in Estate Management and Valuation.</div>
+          <div className="prog-desc">School of Environmental Studies — National Diploma in Estate Management and Valuation.</div>
           <a href="#" className="prog-link" onClick={(e) => e.preventDefault()}>
             Learn more{' '}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2.5" strokeLinecap="round">
@@ -107,7 +107,7 @@ export const Programs: React.FC = () => {
             </svg>
           </div>
           <div className="prog-name">ND Science Lab Technology</div>
-          <div className="prog-desc">Health Sciences faculty — 2-year ND in Science Laboratory Technology.</div>
+          <div className="prog-desc">School of Sciences and Technology — 2-year ND in Science Laboratory Technology.</div>
           <a href="#" className="prog-link" onClick={(e) => e.preventDefault()}>
             Learn more{' '}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2.5" strokeLinecap="round">
@@ -123,7 +123,7 @@ export const Programs: React.FC = () => {
             </svg>
           </div>
           <div className="prog-name">ND Computer Science</div>
-          <div className="prog-desc">Sciences faculty — software development, programming, and computing fundamentals.</div>
+          <div className="prog-desc">School of Sciences and Technology — software development, programming, and computing fundamentals.</div>
           <a href="#" className="prog-link" onClick={(e) => e.preventDefault()}>
             Learn more{' '}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2.5" strokeLinecap="round">
@@ -139,7 +139,7 @@ export const Programs: React.FC = () => {
             </svg>
           </div>
           <div className="prog-name">ND Business Administration</div>
-          <div className="prog-desc">Social Sciences faculty — 2-year ND in Business Administration and Management.</div>
+          <div className="prog-desc">School of Business Administration — 2-year ND in Business Administration and Management.</div>
           <a href="#" className="prog-link" onClick={(e) => e.preventDefault()}>
             Learn more{' '}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2.5" strokeLinecap="round">

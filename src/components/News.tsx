@@ -76,7 +76,7 @@ export const News: React.FC = () => {
               <span>·</span>
               <span>Campus Life</span>
             </div>
-            <h3 className="news-card-title">Hostel Space Allocation for the 2025/2026 Academic Session</h3>
+            <h3 className="news-card-title">Hostel Space Allocation for the 2026/2027 Academic Session</h3>
             <p className="news-card-desc">
               Newly admitted and returning students can now book space in the male/female hostels. Rooms are allocated on a first-come, first-serve basis.
             </p>

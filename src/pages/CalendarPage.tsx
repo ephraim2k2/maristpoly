@@ -13,7 +13,7 @@ export const CalendarPage: React.FC = () => {
     { sn: 6, date: "Friday 22nd May, 2026", event: "Academic Board Meeting" },
     { sn: 7, date: "Saturday 23rd May, 2026", event: "Road Show for 2026/2027 admission" },
     { sn: 8, date: "Monday – Friday 25th – 29th May, 2026", event: "Submission of 2nd semester Exam questions and marking guide" },
-    { sn: 9, date: "Friday 29th May, 2026", event: "Prayer session / Reflection – Staff/students / Students collect their 2025/2026 1st semester results" },
+    { sn: 9, date: "Friday 29th May, 2026", event: "Prayer session / Reflection – Staff/students / Students collect their 2026/2027 1st semester results" },
     { sn: 10, date: "Saturday 6th June, 2026", event: "Feast of St. Marcellien Champagnat - Lecture free day" },
     { sn: 11, date: "Wednesday 10th June, 2026", event: "Management Committee meeting" },
     { sn: 12, date: "Thursday 11th June, 2026", event: "Admission Committee meeting" },
@@ -37,14 +37,14 @@ export const CalendarPage: React.FC = () => {
     { sn: 30, date: "Monday 19th October, 2026", event: "Lectures begin / Return of scripts / score sheets" },
     { sn: 31, date: "Wednesday 11th November, 2026", event: "Management meeting" },
     { sn: 32, date: "Thursday 12th November, 2026", event: "Admission Committee meeting" },
-    { sn: 33, date: "Friday 13th November, 2026", event: "Prayer session / Reflection – Staff and Students. Students collect their 2025/2026 second semester results." },
+    { sn: 33, date: "Friday 13th November, 2026", event: "Prayer session / Reflection – Staff and Students. Students collect their 2026/2027 second semester results." },
   ];
 
   return (
     <>
       <PageHero
         eyebrow="Academic Calendar"
-        title="2025/2026"
+        title="2026/2027"
         titleAccent="Session"
         subtitle="2nd Semester events and important dates for Marist Polytechnic Enugu."
         backgroundImage="/img/backgrund.png"

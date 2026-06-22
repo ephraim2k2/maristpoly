@@ -24,7 +24,7 @@ const newsItems = [
   {
     date: '30 Nov 2025',
     category: 'Campus Life',
-    title: 'Hostel Space Allocation for the 2025/2026 Academic Session',
+    title: 'Hostel Space Allocation for the 2026/2027 Academic Session',
     desc: 'Newly admitted and returning students can now book space in the male/female hostels. Rooms are allocated on a first-come, first-serve basis.',
     image: '/img/news3.jpeg.jpeg',
     featured: false,
@@ -35,7 +35,7 @@ const upcomingEvents = [
   {
     date: 'Jan 2026',
     title: 'New Student Orientation',
-    desc: 'Welcome ceremony and campus tour for newly admitted students of the 2025/2026 session.',
+    desc: 'Welcome ceremony and campus tour for newly admitted students of the 2026/2027 session.',
   },
   {
     date: 'Feb 2026',
